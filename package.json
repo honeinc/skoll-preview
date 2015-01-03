@@ -1,0 +1,37 @@
+{
+  "name": "skoll-preview",
+  "version": "0.0.1",
+  "description": "The default preview plugin for Skoll",
+  "main": "index.js",
+  "scripts": {
+    "test": "jshint ./index.js ./src/* && browserify test/*.js | tape-run -b firefox"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/honeinc/skoll-preview"
+  },
+  "keywords": [
+    "preview",
+    "skoll",
+    "plugin",
+    "image",
+    "multi"
+  ],
+  "author": "Jacob Lowe",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/honeinc/skoll-preview/issues"
+  },
+  "homepage": "https://github.com/honeinc/skoll-preview",
+  "devDependencies": {
+    "browserify": "^6.3.2",
+    "faucet": "0.0.1",
+    "jshint": "^2.5.10",
+    "tape": "^3.0.3",
+    "tape-run": "^0.3.0",
+    "watchify": "^2.2.1"
+  },
+  "dependencies": {
+    "emit-bindings": "^1.0.2"
+  }
+}
