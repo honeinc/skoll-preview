@@ -83,7 +83,6 @@ Preview.prototype = {
 
         wrapper.appendChild( images );
         wrapper.appendChild( buttons );
-        buttons.appendChild( fileName );
         buttons.appendChild( cancel );
         buttons.appendChild( use );
 
