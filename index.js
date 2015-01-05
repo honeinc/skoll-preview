@@ -62,11 +62,11 @@ Preview.prototype = {
         images.classList.add( 'skoll-preview-images' );
         buttons.classList.add( 'skoll-preview-buttons' );
 
-        use.innerText = 'Use';
+        use.textContent = 'Use';
         use.setAttribute( 'data-emit', 'skoll.preview.use' );
         use.classList.add( 'skoll-button' );
 
-        cancel.innerHTML = 'Cancel';
+        cancel.textContent = 'Cancel';
         cancel.setAttribute( 'data-emit', 'skoll.preview.cancel' );
         cancel.classList.add( 'skoll-button' );
 
