@@ -1,6 +1,6 @@
 {
   "name": "skoll-preview",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "The default preview plugin for Skoll",
   "main": "index.js",
   "scripts": {
