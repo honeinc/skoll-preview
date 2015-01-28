@@ -17,8 +17,6 @@ Preview.prototype = {
             render = this.render.bind( this ),
             _files = [];
 
-        emit.on( 'skoll.preview.cancel', skoll.open.bind( skoll, { meta: meta } ) );
-        emit.on( 'skoll.preview.use', skoll.upload.bind( skoll, meta.event ) );
 
         function next( err, URI ) {
             
@@ -32,6 +30,8 @@ Preview.prototype = {
 
             if ( count === size ) {
                 render( _files, done );
+                emit.on( 'skoll.preview.cancel', skoll.open.bind( skoll, { meta: meta } ) );
+                emit.on( 'skoll.preview.use', skoll.upload.bind( skoll, meta.event ) );
             }
         }
 
