@@ -20,7 +20,7 @@ Preview.prototype = {
 
         function next( err, URI ) {
             
-            var btns;
+            var btns, back;
 
             count ++;
 
@@ -30,7 +30,14 @@ Preview.prototype = {
 
             if ( count === size ) {
                 render( _files, done );
-                emit.on( 'skoll.preview.cancel', skoll.open.bind( skoll, { meta: meta } ) );
+
+                back = Object.create( { meta: meta } );
+                
+                if ( typeof skoll.prevPlugin === 'object' ) {
+                    back.plugin = skoll.prevPlugin.attributes.name; // this allows for skoll to back to prior plugin
+                }
+
+                emit.on( 'skoll.preview.cancel', skoll.open.bind( skoll, back ) );
                 emit.on( 'skoll.preview.use', skoll.upload.bind( skoll, meta.event ) );
             }
         }
