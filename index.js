@@ -1,4 +1,8 @@
 var emit = require( 'emit-bindings' ),
+    dom = require( 'domla' ),
+    div = dom.div,
+    button = dom.button,
+    img = dom.img,
     attributes = {
         name : 'preview',
         hide: true
@@ -59,41 +63,29 @@ Preview.prototype = {
         emit.removeAllListeners( 'skoll.preview.use' );
     },
     render: function( files, callback ) {
-        var wrapper = document.createElement( 'div' ),
-            use = document.createElement( 'button' ),
-            cancel = document.createElement( 'button' ),
-            images = document.createElement( 'div' ),
-            buttons = document.createElement( 'div' );
-
-        wrapper.classList.add( 'skoll-preview-wrapper' );
-        images.classList.add( 'skoll-preview-images' );
-        buttons.classList.add( 'skoll-preview-buttons' );
-
-        use.textContent = 'Use';
-        use.setAttribute( 'data-emit', 'skoll.preview.use' );
-        use.classList.add( 'skoll-button' );
-
-        cancel.textContent = 'Cancel';
-        cancel.setAttribute( 'data-emit', 'skoll.preview.cancel' );
-        cancel.classList.add( 'skoll-button' );
+        
+        var images, 
+            el;
+        
+        images = div( { className: 'skoll-preview-images' } );
+        el = (
+            div( { className: 'skoll-preview-wrapper' },
+                images,
+                div( { className: 'skoll-preview-buttons' },
+                    button( { className: 'skoll-button', 'data-emit': 'skoll.preview.cancel' }, 'Cancel' ),
+                    button( { className: 'skoll-button', 'data-emit': 'skoll.preview.use' }, 'Use' )
+                )
+            )
+        );
 
         if( files.length === 1 ) {
-            // display a large image
-            var img = document.createElement( 'img' );
-            img.src = files[ 0 ];
-            img.classList.add( 'skoll-preview-image-large');
-            images.appendChild( img );
+            images.appendChild( img( { className: 'skoll-preview-image-large', src: files[ 0 ] } ) );
         }
         else {
             files.forEach( createElementAndAppend( images ) );
         }
 
-        wrapper.appendChild( images );
-        wrapper.appendChild( buttons );
-        buttons.appendChild( cancel );
-        buttons.appendChild( use );
-
-        callback( null, wrapper );
+        callback( null, el );
     }
 };
 
@@ -102,10 +94,7 @@ module.exports.Plugin = Preview; // export out plugin for extending
 
 function createElementAndAppend( container ) {
     return function( file ) {
-        var img = document.createElement( 'div' );
-        img.classList.add( 'skoll-preview-image' );
-        img.setAttribute( 'style', 'background-image: url(' + file + ');' );
-        container.appendChild( img );
+        container.appendChild( img( { className: 'skoll-preview-image', style: 'background-image:url(' + file + ');' } ) );
     }
 }
 

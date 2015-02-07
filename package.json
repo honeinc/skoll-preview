@@ -32,6 +32,7 @@
     "watchify": "^2.2.1"
   },
   "dependencies": {
+    "domla": "^0.2.1",
     "emit-bindings": "^1.0.2"
   }
 }
